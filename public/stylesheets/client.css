@@ -1,0 +1,103 @@
+/*html {
+	height: 100%;
+}
+
+body {
+	background-color: #cccccc;
+	height: 100%;
+	margin: 0;
+	padding: 0;
+}
+
+label.register {
+	display: inline-block;
+	min-width: 150px;
+}
+
+#container {
+	padding-left: 20px;
+	background-color: white;
+	width: 800px;
+	margin: 0 auto;
+	margin-bottom: 10px;
+	height: 100%;
+	border-radius: 10px;
+}
+
+#signIn h2 {
+	margin-bottom: 40px;
+}
+
+#signIn .control-label {
+	text-align: right;
+	width: 33%;
+}
+
+#signIn .btn {
+	margin-top: 20px;
+}
+
+#signIn {
+	text-align: center;
+	margin: auto;
+}
+*/
+#content {
+	display: none;
+	/*position: relative;*/
+}
+
+#roomList {
+	display:none;
+}
+/*
+#header h1 {
+	margin-left: -20px;
+	color: white;
+	margin-top: 0;
+	padding-top: 10px;
+	margin-bottom: 50px;
+	background: #0AC;
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#0AC), color-stop(100%,#04C)); // Chrome,Safari4+
+	background: -webkit-linear-gradient(top, #0AC 0%,#04C 100%); // Chrome10+,Safari5.1+
+	background: -o-linear-gradient(top, #0AC 0%,#04C 100%); // Opera 11.10+ 
+	background: -ms-linear-gradient(top, #0AC 0%,#04C 100%); // IE10+ 
+	background: linear-gradient(to bottom, #0AC 0%,#04C 100%); // W3C
+	border-top-left-radius: 10px;
+	border-top-right-radius: 10px;
+}*/
+
+#gameFrame {
+	/*position: relative;*/
+	text-align: center;
+	height: 350px;
+	width: 75%;
+	float: left;
+	margin-top: 50px;
+}
+
+#gameFrame img {
+	vertical-align: middle;
+	height: 280px;
+	width: auto;
+}
+
+#rankingFrame {
+	overflow: auto;
+	border: 1px groove #04C;
+	border-radius: 10px;
+	height: 400px;
+	width: 19%;
+}
+
+/*
+ #header{
+ padding-top:20px;
+ margin-bottom: 40px;
+ }
+
+ img{
+ border:none;
+ }
+
+ */
