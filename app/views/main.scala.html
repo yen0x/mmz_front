@@ -1,4 +1,4 @@
-@(title: String)(content: Html)
+@(title: String,nav: String = "home")(content: Html)
 
 <!DOCTYPE html>
 
@@ -15,7 +15,7 @@
 
 </head>
 <body>
-	@header(title)
+	@header(title, nav)
 	
 	<section>@content</section>
 	
