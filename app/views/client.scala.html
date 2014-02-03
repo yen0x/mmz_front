@@ -1,0 +1,58 @@
+@main("Mymoz") {
+<div class="container-fluid">
+	<div class="row-fluid">
+		<div id="container">
+			<div id="signIn">
+				<h3>Connexion au serveur de jeu</h3>
+				<form name="signInForm" action="javascript:;"
+					class="form-horizontal">
+					<table class="table table-striped">
+						<tr>
+							<td>
+								<div class="control-group">
+									<label for="login" class="control-label">Utilisateur :</label>
+									<div class="controls">
+										<input type="text" id="login" value="" />
+									</div>
+								</div>
+								<div class="control-group" style="margin-bottom: 0px;">
+									<label for="password" class="control-label">Mot de
+										passe :</label>
+									<div class="controls">
+										<input type="password" id="password" value="" />
+									</div>
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<td><input type="submit" id="signInBouton"
+								value="Me Connecter" class="btn" /></td>
+						</tr>
+					</table>
+				</form>
+			</div>
+			<div id="roomList">
+				<h2>Liste des parties disponibles</h2>
+				<div>Cliquez sur une partie ci-dessous pour la rejoindre :</div>
+				<br />
+				<ul id="roomList_ul" class="nav nav-pills"></ul>
+			</div>
+			<div id="log"></div>
+			<div id="reponseServeur"></div>
+			<div id="reponseScore"></div>
+			<div id="content">
+				<div id="gameFrame">Votre partie va bient&ocirc;t commencer.</div>
+				<div id="rankingFrame"></div>
+				<form name="reponseForm" action="javascript:;">
+					<h2>R&eacute;ponse :</h2>
+					<input type="text" id="reponse" style="width: 66%" /> <input
+						type="submit" class="button" id="reponseBouton" value="OK" />
+				</form>
+			</div>
+		</div>
+		<!-- /container -->
+	</div>
+	<!--/row-->
+</div>
+
+}
