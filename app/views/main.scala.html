@@ -24,8 +24,10 @@
 	<!-- javascript includes -->
 	<script src="@routes.Assets.at("javascripts/jquery-1.9.0.min.js")" type="text/javascript"></script>
 	<script src="@routes.Assets.at("frameworks/bootstrap/js/bootstrap.min.js")" type="text/javascript"></script>
-	<script src="@routes.Assets.at("javascripts/strophe.js")" type="text/javascript"></script>
-	<script src="@routes.Assets.at("javascripts/client.js")" type="text/javascript"></script>
+	@if(nav.equals("game")){
+		<script src="@routes.Assets.at("javascripts/strophe.js")" type="text/javascript"></script>
+		<script src="@routes.Assets.at("javascripts/client.js")" type="text/javascript"></script>
+	}
 	
 </body>
 </html>
