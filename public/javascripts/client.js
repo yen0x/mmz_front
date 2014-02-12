@@ -106,7 +106,7 @@ var Client = {
 //			});
                         
 			$(document).trigger('connected');
-			$("#signIn").hide();
+			$("#formsContainer").hide();
 		} else if(status === Strophe.Status.DISCONNECTED) {
 			$(document).trigger('disconnected');
 		} else if(status === Strophe.Status.ERROR) {
