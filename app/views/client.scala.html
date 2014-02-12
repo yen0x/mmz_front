@@ -1,58 +1,67 @@
 @main("Mymoz", "game") {
 <div class="container-fluid">
-	<div class="row-fluid">
-		<div id="container">
-			<div id="signIn">
+	<div id="container">
+		<div id="formsContainer" class="row">
+			<div id="signIn" class="col-xs-6">
 				<h3>Connexion au serveur de jeu</h3>
 				<form name="signInForm" action="javascript:;"
 					class="form-horizontal">
-					<table class="table table-striped">
-						<tr>
-							<td>
-								<div class="control-group">
-									<label for="login" class="control-label">Utilisateur :</label>
-									<div class="controls">
-										<input type="text" id="login" value="" />
-									</div>
-								</div>
-								<div class="control-group" style="margin-bottom: 0px;">
-									<label for="password" class="control-label">Mot de
-										passe :</label>
-									<div class="controls">
-										<input type="password" id="password" value="" />
-									</div>
-								</div>
-							</td>
-						</tr>
-						<tr>
-							<td><input type="submit" id="signInBouton"
-								value="Me Connecter" class="btn" /></td>
-						</tr>
-					</table>
+					<div class="control-group">
+						<label for="login" class="control-label">Utilisateur :</label>
+						<div class="controls">
+							<input type="text" id="login" value="" class="form-control" />
+						</div>
+					</div>
+					<div class="control-group" style="margin-bottom: 0px;">
+						<label for="password" class="control-label">Mot de passe :</label>
+						<div class="controls">
+							<input type="password" id="password" value=""
+								class="form-control" />
+						</div>
+					</div>
+					<br /> <input type="submit" id="signInBouton" value="Me Connecter"
+						class="btn btn-primary" />
 				</form>
 			</div>
-			<div id="roomList">
-				<h2>Liste des parties disponibles</h2>
-				<div>Cliquez sur une partie ci-dessous pour la rejoindre :</div>
-				<br />
-				<ul id="roomList_ul" class="nav nav-pills"></ul>
-			</div>
-			<div id="log"></div>
-			<div id="reponseServeur"></div>
-			<div id="reponseScore"></div>
-			<div id="content">
-				<div id="gameFrame">Votre partie va bient&ocirc;t commencer.</div>
-				<div id="rankingFrame"></div>
-				<form name="reponseForm" action="javascript:;">
-					<h2>R&eacute;ponse :</h2>
-					<input type="text" id="reponse" style="width: 66%" /> <input
-						type="submit" class="button" id="reponseBouton" value="OK" />
+			<!-- /sign in -->
+			<div id="tryOut" class="col-xs-6">
+				<h3>Essayer le jeu</h3>
+				<form name="signInForm" action="javascript:;"
+					class="form-horizontal">
+					<div class="control-group">
+						<label for="nickname" class="control-label">Pseudo :</label>
+						<div class="controls">
+							<input type="text" id="nickname" value="" class="form-control" />
+						</div>
+					</div>
+					<br/>
+					<input type="submit" id="signInBouton" value="Essayer"
+						class="btn btn-primary pull-right" />
 				</form>
 			</div>
+			<!-- /try out -->
 		</div>
-		<!-- /container -->
+		<!-- /formContainer -->
+		<div id="roomList">
+			<h2>Liste des parties disponibles</h2>
+			<div>Cliquez sur une partie ci-dessous pour la rejoindre :</div>
+			<br />
+			<ul id="roomList_ul" class="nav nav-pills"></ul>
+		</div>
+		<div id="log"></div>
+		<div id="reponseServeur"></div>
+		<div id="reponseScore"></div>
+		<div id="content">
+			<div id="gameFrame">Votre partie va bient&ocirc;t commencer.</div>
+			<div id="rankingFrame"></div>
+			<form name="reponseForm" action="javascript:;">
+				<h2>R&eacute;ponse :</h2>
+				<input type="text" id="reponse" style="width: 66%" /> <input
+					type="submit" class="button" id="reponseBouton" value="OK" />
+			</form>
+		</div>
 	</div>
-	<!--/row-->
+	<!-- /container -->
 </div>
 
 }
