@@ -173,6 +173,16 @@ $(document).ready(function() {
 		Client.nickname = $('#login').val();
 		Client.connection.connect($('#login').val() + "@localhost/webbrowser", $('#password').val(), Client.onConnect);
 	});
+	$("#signInGuest").click(function() {
+		$.ajax({
+			url : '/site/joinAsGuest',
+			success : function(data) {
+				Client.nickname = data.user;
+				Client.connection.connect(data.user + "@localhost/webbrowser", data.password, Client.onConnect);
+			}
+		});
+	});
+	
 
 	$(document).bind('connected', function() {
 		
