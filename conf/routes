@@ -6,7 +6,10 @@
 GET     /                           controllers.Application.index()
 
 # Game page
-GET     /game                     controllers.Application.game()
+GET     /game                     	controllers.Application.game()
+
+# Json request
+GET 	/joinAsGuest				controllers.UserController.joinAsGuest()
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.at(path="/public", file)
