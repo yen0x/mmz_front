@@ -11,4 +11,6 @@ libraryDependencies ++= Seq(
   "play4jpa" %% "play4jpa" % "0.1-SNAPSHOT"
 )     
 
+javaOptions in Test += "-Dconfig.file=conf/test.conf"
+
 play.Project.playJavaSettings
