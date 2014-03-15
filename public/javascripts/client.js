@@ -196,5 +196,7 @@ $(document).ready(function() {
 		Client.connection.sendIQ(iq, function(iq_result) {
 			Client.getRooms(iq_result);
 		});
+		
+		$("#userConnect").text(Client.nickname);
 	});
 });
