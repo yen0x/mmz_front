@@ -1,0 +1,18 @@
+@(userForm : Form[User])
+@import helper._
+
+@main("Création d'un nouveau compte") {
+	<div class="container">
+		<div class="row col-xs-3">
+		@form(routes.UserController.newUser()){
+			<div class="control-group">
+				@inputText(userForm("username"),'class -> "form-control", '_label -> "Pseudo")
+				@inputPassword(userForm("password"),'class -> "form-control", '_label -> "Mot de passe")
+				@inputText(userForm("email"),'class -> "form-control", '_label -> "E-mail")
+				
+				<input type="submit" value="OK" class="btn btn-default"/>
+			</div>
+		}
+		</div>
+	</div>
+}
