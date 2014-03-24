@@ -1,8 +1,15 @@
-@(message: String)
+@(alert : String = "")
 
-@main("Mymoz") {
+@main() {
 	<div class="container-fluid">
       <div class="row-fluid">
+      	 
+		@if(alert == "signupOK"){
+			<div class="alert alert-success">
+		        Votre compte a &eacute;t&eacute; cr&eacute;&eacute; ! <a href='@(routes.Application.game)' class='alert-link'>Jouez en cliquant ici !</a>
+		    </div>
+		}
+		
 		<h3>Bienvenue sur MyMovieQuiz</h3>
 		MyMovieQuiz vous propose une petite pause quotidienne de fun en testant vos connaissances cin&eacute;matographiques.
 
@@ -22,7 +29,7 @@
 		</p>
 
 		<p>
-		Pour continuer, <a href="#">cr&eacute;ez un compte</a> ou <a href="#">connectez-vous</a>.
+		Pour continuer, <a href="@routes.Application.signup">cr&eacute;ez un compte</a> ou <a href="@routes.Application.game">essayez MyMovieQuiz directement</a>.
 		</p>
       </div><!--/row-->
 	 </div>

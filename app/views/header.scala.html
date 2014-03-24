@@ -1,4 +1,4 @@
-@(title: String, nav: String = "")
+@(nav: String = "")
 <header>
 		<nav class="navbar navbar-default" role="navigation">
 			<div class="container-fluid">
@@ -11,14 +11,14 @@
 						<span class="icon-bar"></span> 
 						<span class="icon-bar"></span>
 					</button>
-					<a class="navbar-brand" href="#">@title</a>
+					<a class="navbar-brand" href="#">Mymoz</a>
 				</div>
 
 				<!-- Collect the nav links, forms, and other content for toggling -->
 				<div class="collapse navbar-collapse"
 					id="bs-example-navbar-collapse-1">
 					<ul class="nav navbar-nav">
-						<li class="@("active".when(nav == "home"))"><a href="@(routes.Application.index)">Accueil</a></li>
+						<li class="@("active".when(nav == "home"))"><a href="@(routes.Application.index())">Accueil</a></li>
 						<li class="@("active".when(nav == "game"))"><a href="@(routes.Application.game)">Jouer</a></li>
 					</ul>
 					<ul class="nav navbar-nav navbar-right">

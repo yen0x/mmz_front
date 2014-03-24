@@ -1,11 +1,11 @@
-@(title: String,nav: String = "home")(content: Html)
+@(nav: String = "home")(content: Html)
 
 <!DOCTYPE html>
 
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>@title</title>
+<title>Mymoz</title>
 <link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/main.css")">
 <link rel="shortcut icon" type="image/png" href="@routes.Assets.at("images/favicon.png")">
 
@@ -15,9 +15,11 @@
 
 </head>
 <body>
-	@header(title, nav)
+	@header(nav)
 	
-	<section>@content</section>
+	<section>
+		@content
+	</section>
 	
 	
 	@footer()
