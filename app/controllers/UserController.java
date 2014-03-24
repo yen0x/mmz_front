@@ -40,7 +40,7 @@ public class UserController extends Controller {
 		if (filledForm.hasErrors()) {
 			return badRequest(signup.render(filledForm));
 		} else {
-			User user = User.create(filledForm.get());
+			User user = filledForm.get().create();
 			String message ="Bienvenue sur MyMovieQuiz,\r\n \r\nVous pouvez désormais vous connecter";
 			message+=" avec le nom d'utilisateur " + user.username + ".\r\n \r\n";
 			message+="A bientôt dans les salons Mymoz !";
