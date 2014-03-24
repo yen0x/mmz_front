@@ -1,14 +1,22 @@
 @(userForm : Form[User])
 @import helper._
 
-@main("Création d'un nouveau compte") {
+@implicitField = @{ FieldConstructor(bootstrapFieldConstructor.f) }
+
+@main() {
 	<div class="container">
-		<div class="row col-xs-3">
+		<div class="row col-xs-6">
+		<h3>Cr&eacute;ation d'un nouveau compte</h3>
+		@if(userForm.hasGlobalErrors) {
+		    <div class="alert alert-danger">
+		        @userForm.globalError.message
+		    </div>
+		}
 		@form(routes.UserController.newUser()){
 			<div class="control-group">
-				@inputText(userForm("username"),'class -> "form-control", '_label -> "Pseudo")
-				@inputPassword(userForm("password"),'class -> "form-control", '_label -> "Mot de passe")
-				@inputText(userForm("email"),'class -> "form-control", '_label -> "E-mail")
+				@inputText(userForm("username"),'class -> "form-control", '_label -> "Pseudo", '_showConstraints -> false)
+				@inputPassword(userForm("password"),'class -> "form-control", '_label -> "Mot de passe", '_showConstraints -> false)
+				@inputText(userForm("email"),'class -> "form-control", '_label -> "E-mail", '_showConstraints -> false, '_error -> "Email invalide")
 				
 				<input type="submit" value="OK" class="btn btn-default"/>
 			</div>
