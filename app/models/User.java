@@ -1,6 +1,11 @@
 package models;
 
+import helpers.PasswordEncryptionHelper;
+
+import java.io.UnsupportedEncodingException;
 import java.math.BigInteger;
+import java.security.NoSuchAlgorithmException;
+import java.security.spec.InvalidKeySpecException;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -13,6 +18,8 @@ import org.w3c.dom.Document;
 
 import play.Logger;
 import play.Play;
+import play.data.validation.Constraints.Email;
+import play.data.validation.Constraints.Required;
 import play.db.jpa.JPA;
 import play.libs.F;
 import play.libs.WS;
@@ -35,10 +42,15 @@ public class User extends Model<User> {
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_gen")
 	public int id;
+	@Required(message="Pseudo requis")
 	public String username;
+	@Required(message="Mot de  passe requis")
 	public String password;
+	@Required(message="E-mail requis")
+	@Email(message="Format incorrect")
 	public String email;
 	public String statut = "u";
+	public byte[] salt;
 
 	public static Finder<String, User> find = new Finder<>(String.class,
 			User.class);
@@ -48,10 +60,6 @@ public class User extends Model<User> {
 	}
 
 	public User() {
-		this.username = "guest";
-		this.password = "guest";
-		this.statut = "g";
-		this.email = "guest@test.com";
 	}
 
 	public User(String username, String password, String email, String statut) {
@@ -61,37 +69,59 @@ public class User extends Model<User> {
 		if (null != statut)
 			this.statut = statut;
 	}
+	
+	public static User create(User user) throws NoSuchAlgorithmException, InvalidKeySpecException, UnsupportedEncodingException{
+		byte [] salt = PasswordEncryptionHelper.generateSalt();
+		user.salt = salt;
+		
+		byte[] password = PasswordEncryptionHelper.getEncryptedPassword(user.password, user.salt);
+		user.password = PasswordEncryptionHelper.byteToBase64(password);
+		user.save();
+		User.createOnXMPPServer(user);
+		return user;
+	}
 
 	public static User createGuest() {
 		// TODO securize password generation
 		User guest = new User("guest", "guest",
-				"", "g");
+				"guest@guest.com", "g");
 		guest.save();
 
 		guest.username = guest.username+guest.id;
 		guest.password = guest.password+guest.id;
 
+		guest.update();
+
+		return User.createOnXMPPServer(guest);
+		
+	}
+	
+	/**
+	 * sends a GET request to the xmpp server for a user creation
+	 * @param user
+	 * @return
+	 */
+	public static User createOnXMPPServer(User user){
 		WSRequestHolder wsreqHolder = WS.url(Play.application().configuration()
 				.getString("openfire.url"));
 		wsreqHolder.setQueryParameter("type", "add");
 		wsreqHolder.setQueryParameter("secret", Play.application()
 				.configuration().getString("openfire.key"));
-		wsreqHolder.setQueryParameter("username", guest.username);
-		wsreqHolder.setQueryParameter("password", guest.password);
-		wsreqHolder.setQueryParameter("email", guest.email);
+		wsreqHolder.setQueryParameter("username", user.username);
+		wsreqHolder.setQueryParameter("password", user.password);
+		wsreqHolder.setQueryParameter("email", user.email);
 		F.Promise<WS.Response> openfireResult = wsreqHolder.get();
 		WS.Response response = openfireResult.get(3000);
 		Document xmlResponse = response.asXml();
 		if (XPath.selectText("result", xmlResponse).equals("ok")) {
-			guest.update();
-			return guest;
+			return user;
 		} else {
-			guest.delete();
+			user.delete();
 			Logger.error(XPath.selectText("error", xmlResponse));
 			return null;
 		}
 	}
-
+	//TODO separate into deleteUser and deleteFrom XMPP
 	public static boolean deleteGuest(int userId) {
 
 		User guest = query().eq("id", userId).eq("statut", "g").findUnique();
@@ -124,4 +154,22 @@ public class User extends Model<User> {
 				"select nextval('users_id_seq')");
 		return ((BigInteger) q.getSingleResult()).intValue();
 	}
+	
+	public String validate(){
+		if(findByUsername(username) != null){
+			return "Ce pseudonyme est déjà pris par un autre joueur";
+		}else if(findByEmail(email) != null){
+			return "Un compte est déjà créé avec cette adresse e-mail";
+		}
+		return null;
+	}
+	
+	public static User findByUsername(String username){
+		return query().eq("username", username).findUnique();
+	}
+	
+	public static User findByEmail(String email){
+		return query().eq("email", email).findUnique();
+	}
+	
 }

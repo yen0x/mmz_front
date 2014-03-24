@@ -44,4 +44,22 @@ public class UserTest extends AbstractDatabaseTest {
 			}
 		});
 	}
+
+	@Test
+	public void testFindByUsername() throws Throwable {
+		JPA.withTransaction(new Function0<Void>() {
+			public Void apply() {
+				User user = new User("toto", "toto", "toto@test.com", "u");
+				user.save();
+				User user2 = User.findByUsername(user.username);
+				assertThat(user2).describedAs("user is null").isNotNull();
+				assertThat(user2.username).describedAs("username is wrong")
+						.isEqualTo(user.username);
+				assertThat(user2.id).describedAs("user differs from base user")
+						.isEqualTo(user.id);
+				user.delete();
+				return null;
+			}
+		});
+	}
 }
