@@ -70,15 +70,16 @@ public class User extends Model<User> {
 			this.statut = statut;
 	}
 	
-	public static User create(User user) throws NoSuchAlgorithmException, InvalidKeySpecException, UnsupportedEncodingException{
+	public User create() throws NoSuchAlgorithmException, InvalidKeySpecException, UnsupportedEncodingException{
 		byte [] salt = PasswordEncryptionHelper.generateSalt();
-		user.salt = salt;
+		this.salt = salt;
 		
-		byte[] password = PasswordEncryptionHelper.getEncryptedPassword(user.password, user.salt);
-		user.password = PasswordEncryptionHelper.byteToBase64(password);
-		user.save();
-		User.createOnXMPPServer(user);
-		return user;
+		byte[] password = PasswordEncryptionHelper.getEncryptedPassword(this.password, this.salt);
+		this.save();
+		this.createOnXMPPServer();
+		this.password = PasswordEncryptionHelper.byteToBase64(password);
+		this.update();
+		return this;
 	}
 
 	public static User createGuest() {
@@ -92,7 +93,7 @@ public class User extends Model<User> {
 
 		guest.update();
 
-		return User.createOnXMPPServer(guest);
+		return guest.createOnXMPPServer();
 		
 	}
 	
@@ -101,27 +102,36 @@ public class User extends Model<User> {
 	 * @param user
 	 * @return
 	 */
-	public static User createOnXMPPServer(User user){
+	public User createOnXMPPServer(){
 		WSRequestHolder wsreqHolder = WS.url(Play.application().configuration()
 				.getString("openfire.url"));
 		wsreqHolder.setQueryParameter("type", "add");
 		wsreqHolder.setQueryParameter("secret", Play.application()
 				.configuration().getString("openfire.key"));
-		wsreqHolder.setQueryParameter("username", user.username);
-		wsreqHolder.setQueryParameter("password", user.password);
-		wsreqHolder.setQueryParameter("email", user.email);
+		wsreqHolder.setQueryParameter("username", this.username);
+		wsreqHolder.setQueryParameter("password", this.password);
+		wsreqHolder.setQueryParameter("email", this.email);
 		F.Promise<WS.Response> openfireResult = wsreqHolder.get();
 		WS.Response response = openfireResult.get(3000);
 		Document xmlResponse = response.asXml();
 		if (XPath.selectText("result", xmlResponse).equals("ok")) {
-			return user;
+			return this;
 		} else {
-			user.delete();
+			this.delete();
 			Logger.error(XPath.selectText("error", xmlResponse));
 			return null;
 		}
 	}
-	//TODO separate into deleteUser and deleteFrom XMPP
+	
+	/**
+	 * Method to be called instead of delete
+	 * @return true if the user has been deleted
+	 */
+	public boolean erase(){
+		return deleteFromXMPPServer();
+	}
+	
+	
 	public static boolean deleteGuest(int userId) {
 
 		User guest = query().eq("id", userId).eq("statut", "g").findUnique();
@@ -129,19 +139,24 @@ public class User extends Model<User> {
 			Logger.error("guest not found for deletion");
 			return false;
 		}
-
+		
+		return guest.deleteFromXMPPServer();
+		
+	}
+	
+	public boolean deleteFromXMPPServer(){
 		WSRequestHolder wsreqHolder = WS.url(Play.application().configuration()
 				.getString("openfire.url"));
 		wsreqHolder.setQueryParameter("type", "delete");
 		wsreqHolder.setQueryParameter("secret", Play.application()
 				.configuration().getString("openfire.key"));
-		wsreqHolder.setQueryParameter("username", guest.username);
+		wsreqHolder.setQueryParameter("username", this.username);
 		F.Promise<WS.Response> openfireResult = wsreqHolder.get();
 		WS.Response response = openfireResult.get(3000);
 
 		Document xmlResponse = response.asXml();
 		if (XPath.selectText("result", xmlResponse).equals("ok")) {
-			guest.delete();
+			this.delete();
 			return true;
 		} else {
 			Logger.error(XPath.selectText("error", xmlResponse));
@@ -170,6 +185,16 @@ public class User extends Model<User> {
 	
 	public static User findByEmail(String email){
 		return query().eq("email", email).findUnique();
+	}
+	
+	public boolean authenticate(String password) throws NoSuchAlgorithmException, InvalidKeySpecException{
+		byte[] passwordValidation = PasswordEncryptionHelper
+				.getEncryptedPassword(password, this.salt);
+		if(PasswordEncryptionHelper.byteToBase64(passwordValidation).equals(this.password)){
+			return true;
+		}else{
+			return false;
+		}
 	}
 	
 }

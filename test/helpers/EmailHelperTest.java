@@ -1,8 +1,9 @@
 package helpers;
 
 import org.junit.Test;
+import base.AbstractDatabaseTest;
 
-public class EmailHelperTest {
+public class EmailHelperTest extends AbstractDatabaseTest{
 
 	@Test
 	public void testSendSimpleEmail() {

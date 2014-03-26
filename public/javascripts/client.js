@@ -1,13 +1,13 @@
 var Client = {
-	BOSH_SERVICE : 'http://www.mymoviequiz.com/xmpp-httpbind',
+	BOSH_SERVICE : 'http://localhost/xmpp-httpbind',
 	connection : null,
 	room : '',
-	conference : 'conference.sd-30173',
-	adminBase : 'roomadmin@sd-30173/',
+	conference : 'conference.localhost',
+	adminBase : 'roomadmin@localhost/',
 	admin : '',
 	muc_jid : '',
 	nickname : '',
-	MMZ_URL : 'http://www.mymoviequiz.com',
+	MMZ_URL : 'http://localhost',
 	NS_MUC : 'http://jabber.org/protocol/muc',
 
 	classementFinalHandler : function(json) {
@@ -120,7 +120,7 @@ var Client = {
 	},
 	autoReconnect : function() {
 		Client.connection.disconnect();
-		Client.connection.connect($('#login').val() + "@sd-30173", $('#password').val(), Client.onConnect);
+		Client.connection.connect($('#login').val() + "@localhost", $('#password').val(), Client.onConnect);
 		return true;
 	},
 	getRooms : function(iq_result) {
@@ -171,14 +171,14 @@ $(document).ready(function() {
 	}
 	$("#signInBouton").click(function() {
 		Client.nickname = $('#login').val();
-		Client.connection.connect($('#login').val() + "@sd-30173/webbrowser", $('#password').val(), Client.onConnect);
+		Client.connection.connect($('#login').val() + "@localhost/webbrowser", $('#password').val(), Client.onConnect);
 	});
 	$("#signInGuest").click(function() {
 		$.ajax({
 			url : '/site/joinAsGuest',
 			success : function(data) {
 				Client.nickname = data.user;
-				Client.connection.connect(data.user + "@sd-30173/webbrowser", data.password, Client.onConnect);
+				Client.connection.connect(data.user + "@localhost/webbrowser", data.password, Client.onConnect);
 			}
 		});
 	});
@@ -187,7 +187,7 @@ $(document).ready(function() {
 	$(document).bind('connected', function() {
 		
 		var iq = $iq({
-			to : "conference.sd-30173",
+			to : "conference.localhost",
 			type : "get"
 		}).c("query", {
 			xmlns : 'http://jabber.org/protocol/disco#items'
