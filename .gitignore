@@ -31,8 +31,5 @@ local.properties
 .classpath
 .settings/
 .loadpath
-<<<<<<< HEAD
-=======
 /.target
 /bin
->>>>>>> fdb422cf63f363749b72367f54c94adba472938e
