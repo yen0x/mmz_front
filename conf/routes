@@ -3,7 +3,7 @@
 # ~~~~
 
 # Home page
-GET     /                           controllers.Application.index(alert ?= "")
+GET     /                           controllers.Application.index()
 
 # Game page
 GET     /game                     	controllers.Application.game()
@@ -11,6 +11,9 @@ GET     /game                     	controllers.Application.game()
 # User sign up
 GET		/signup						controllers.UserController.signup()
 POST 	/signup						controllers.UserController.newUser()
+
+# User sign in
+POST	/signin						controllers.UserController.signin()
 
 # Json request
 GET 	/joinAsGuest				controllers.UserController.joinAsGuest()
