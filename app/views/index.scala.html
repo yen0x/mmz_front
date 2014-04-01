@@ -1,13 +1,10 @@
-@(alert : String = "")
-
 @main() {
 	<div class="container-fluid">
       <div class="row-fluid">
-      	 
-		@if(alert == "signupOK"){
+      	@if(flash.contains("success")){
 			<div class="alert alert-success">
-		        Votre compte a &eacute;t&eacute; cr&eacute;&eacute; ! <a href='@(routes.Application.game)' class='alert-link'>Jouez en cliquant ici !</a>
-		    </div>
+      			@Html(flash.get("success"))
+      		</div>
 		}
 		
 		<h3>Bienvenue sur MyMovieQuiz</h3>
