@@ -7,8 +7,8 @@ import views.html.index;
 
 public class Application extends Controller {
 	
-	public static Result index(String alert) {
-		return ok(index.render(alert));
+	public static Result index() {
+		return ok(index.render());
 	}
 
 	public static Result game() {
