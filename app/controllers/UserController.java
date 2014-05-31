@@ -76,6 +76,12 @@ public class UserController extends Controller {
 			Logger.error("InvalidKeySpecException");
 		}
 		
+		if(authenticated == true){
+			session().clear();
+			session("username", user.username);
+			session("status", user.statut);
+		}
+		
 		ObjectNode result = Json.newObject();
 		result.put("type", "authentication");
 		result.put("authenticated", authenticated);

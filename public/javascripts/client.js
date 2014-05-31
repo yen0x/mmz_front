@@ -2,6 +2,8 @@ var Client = {
 	BOSH_SERVICE : 'http://localhost/xmpp-httpbind',
 	connection : null,
 	room : '',
+	server : 'localhost',
+	resource : 'webbrowser',
 	conference : 'conference.localhost',
 	adminBase : 'roomadmin@localhost/',
 	admin : '',
@@ -60,6 +62,7 @@ var Client = {
 		var body = elems[0];
 		var property = msg.getElementsByTagName('property')[0];
 
+
 		if(property != null) {
 			var propertyName = property.getElementsByTagName('name')[0];
 			var propertyValue = property.getElementsByTagName('value')[0];
@@ -86,25 +89,13 @@ var Client = {
 		return true;
 	},
 	onConnect : function(status) {
-		if(status == Strophe.Status.CONNECTED) {
+		if(status === Strophe.Status.CONNECTED || status === Strophe.Status.ATTACHED) {
 			Client.connection.send($pres().c('priority').t('0'));
 			Client.connection.addHandler(Client.messageHandler, null, 'message', 'groupchat');
 			//Client.connection.addHandler(Client.privateMessageHandler, null, 'message', 'groupchat');
 			Client.connection.addHandler(Client.autoReconnect, null, 'presence', 'unavailable', null, Client.muc_jid);
-			Client.connection.addHandler(Client.listRooms, null, 'iq', 'get');
-//  TODO connect on play   $.ajax({
-//				type : "POST",
-//				url : 'backend_scripts/connection.php',
-//				data : { username : $('#login').val(), password : $('#password').val() }, 
-//				success : function(data) {
-//                                    $("#labelBoutonConnexionDeconnexion").text("Déconnexion");
-//                                    $("#boutonConnexionDeconnexion").click($.post('backend_scripts/disconnection.php'), 
-//                                         function(data){alert(data);                                        
-//                                    });
-//                                    
-//				}
-//			});
-                        
+			//Client.connection.addHandler(Client.listRooms, null, 'iq', 'get');
+			
 			$(document).trigger('connected');
 			$("#formsContainer").hide();
 		} else if(status === Strophe.Status.DISCONNECTED) {
@@ -124,7 +115,6 @@ var Client = {
 		return true;
 	},
 	getRooms : function(iq_result) {
-		
 		$(iq_result).find('item').each(function() {
 			$("#roomList_ul").append("<li class='roomList_li'><a href='#'>" + $(this).attr('name') + "</a></li>");
 		});
@@ -162,41 +152,67 @@ var Client = {
 
 $(document).ready(function() {
 	Client.connection = new Strophe.Connection(Client.BOSH_SERVICE);
-
-	Client.connection.xmlInput = function(traffic) {
-		console.log(traffic);
-	}
-	Client.connection.xmlOutput = function(traffic) {
-		console.log(traffic);
-	}
-	$("#signInBouton").click(function() {
-		Client.nickname = $('#login').val();
-		Client.connection.connect($('#login').val() + "@localhost/webbrowser", $('#password').val(), Client.onConnect);
-	});
-	$("#signInGuest").click(function() {
-		$.ajax({
-			url : '/site/joinAsGuest',
-			success : function(data) {
-				Client.nickname = data.user;
-				Client.connection.connect(data.user + "@localhost/webbrowser", data.password, Client.onConnect);
-			}
-		});
-	});
 	
-
 	$(document).bind('connected', function() {
-		
 		var iq = $iq({
 			to : "conference.localhost",
 			type : "get"
 		}).c("query", {
 			xmlns : 'http://jabber.org/protocol/disco#items'
 		});
-
+		
+		if(Client.nickname === undefined || "" === Client.nickname){
+			Client.nickname = Client.connection.jid.split("@")[0];
+		}
+		
+		sessionStorage.setItem("jid", Client.connection.jid);
 		Client.connection.sendIQ(iq, function(iq_result) {
 			Client.getRooms(iq_result);
 		});
 		
 		$("#userConnect").text(Client.nickname);
 	});
+	
+	Client.connection.xmlInput = function(traffic) {
+		console.log(traffic);
+	}
+	
+	Client.connection.xmlOutput = function(traffic) {
+		console.log(traffic);
+		sessionStorage.setItem("sid", $(traffic).attr("sid"));
+		sessionStorage.setItem("rid", $(traffic).attr("rid"));
+	}
+	$("#signInBouton").click(function() {
+		Client.nickname = $('#login').val();
+		$.ajax({
+			url : '/site/signin',
+			data : { username : $('#login').val(), password : $('#password').val()},
+			type : 'POST',
+			success : function(data) {
+				if(data.authenticated === true){
+					Client.connection.connect($('#login').val() + "@" + Client.server + '/' + Client.resource, $('#password').val(), Client.onConnect);
+				}else{
+					alert('utilisateur ou mot de passe incorrect');
+				}
+			}
+		});
+		
+	});
+	$("#signInGuest").click(function() {
+		$.ajax({
+			url : '/site/joinAsGuest',
+			success : function(data) {
+				Client.nickname = data.user;
+				Client.connection.connect(data.user + "@" + Client.server + '/' + Client.resource, data.password, Client.onConnect);
+			}
+		});
+	});
+	
+	if(sessionStorage.getItem("jid") && sessionStorage.getItem("sid") && sessionStorage.getItem("rid")){
+		Client.connection.attach(sessionStorage.getItem("jid"), sessionStorage.getItem("sid"),
+				parseInt(sessionStorage.getItem("rid"))+1, Client.onConnect);
+	}
+
+	
+	
 });
