@@ -5,6 +5,9 @@
 # Home page
 GET     /                           controllers.Application.index(alert ?= "")
 
+# About page
+GET     /about						controllers.Application.about()
+
 # Game page
 GET     /game                     	controllers.Application.game()
 

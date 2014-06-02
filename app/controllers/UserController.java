@@ -41,7 +41,7 @@ public class UserController extends Controller {
 			return badRequest(signup.render(filledForm));
 		} else {
 			User user = filledForm.get().create();
-			String message ="Bienvenue sur MyMovieQuiz,\r\n \r\nVous pouvez désormais vous connecter";
+			String message ="Bienvenue sur MyMovieQuiz,\r\n \r\nTu peux désormais te connecter";
 			message+=" avec le nom d'utilisateur " + user.username + ".\r\n \r\n";
 			message+="A bientôt dans les salons Mymoz !";
 			EmailHelper.sendSimpleEmail("Inscription Mymoviequiz", user.email, message);

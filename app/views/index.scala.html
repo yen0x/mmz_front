@@ -1,36 +1,24 @@
 @(alert : String = "")
 
 @main() {
+	
 	<div class="container-fluid">
-      <div class="row-fluid">
-      	 
+	
 		@if(alert == "signupOK"){
-			<div class="alert alert-success">
-		        Votre compte a &eacute;t&eacute; cr&eacute;&eacute; ! <a href='@(routes.Application.game)' class='alert-link'>Jouez en cliquant ici !</a>
-		    </div>
-		}
+				<div class="alert alert-success">
+			        Ton compte a &eacute;t&eacute; cr&eacute;&eacute; ! <a href='@(routes.Application.game)' class='alert-link'>Fais p&eacute;ter les images !</a>
+			    </div>
+			}
+	
+		<div class="hero-unit">
+		  <h1>Bienvenue sur MYMOviequiZ</h1>
+		  <p>o&ugrave; tu pourras taquiner du screenshot et mettre &agrave; l'&eacute;preuve tes connaissances cin&eacute;matographiques</p>
+		  <p>
+		    <a class="btn btn-primary btn-large" href="@(routes.Application.about)">
+		      Oui, mais comment qu'&ccedil;a marche ?
+		    </a>
+		  </p>
+		</div>
 		
-		<h3>Bienvenue sur MyMovieQuiz</h3>
-		MyMovieQuiz vous propose une petite pause quotidienne de fun en testant vos connaissances cin&eacute;matographiques.
-
-		<h3>But du jeu</h3>
-
-		Trouver le plus vite possible le titre d'un film &agrave; partir de plusieurs images.
-		<ul>
-		<li>15 films par partie</li>
-		<li>6 screenshots par films</li>
-		<li>4 secondes par screenshots</li>
-		</ul>
-		<p>
-		<strong>Vous avez le titre, vous avez le point !</strong></p>
-		
-		<p>
-		Testez vos connaissances par genre (Science-fiction, &Eacute;pouvante, Com&eacute;die, Action...) ou tentez le Quiz G&eacute;n&eacute;ral.
-		</p>
-
-		<p>
-		Pour continuer, <a href="@routes.UserController.signup">cr&eacute;ez un compte</a> ou <a href="@routes.Application.game">essayez</a> MyMovieQuiz directement.
-		</p>
-      </div><!--/row-->
-	 </div>
+	</div>
 }
