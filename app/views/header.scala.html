@@ -23,7 +23,7 @@
 						<li class="@("active".when(nav == "about"))"><a href="@(routes.Application.about)">A propos</a></li>
 					</ul>
 					<ul class="nav navbar-nav navbar-right">
-						<li><a href="@(routes.Application.game)"><span class="glyphicon glyphicon-user"></span><span id="userConnect">Connexion</span></a></li>
+						<li><a href="@(routes.Application.game)"><span class="glyphicon glyphicon-user"></span><span id="userConnect">@if(session.get("username")){@session.get("username")}else{Connexion}</span></a></li>
 					</ul>
 				</div>
 				<!-- /.navbar-collapse -->

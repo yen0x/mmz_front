@@ -1,14 +1,12 @@
-@(alert : String = "")
-
 @main() {
 	
 	<div class="container-fluid">
 	
-		@if(alert == "signupOK"){
-				<div class="alert alert-success">
-			        Ton compte a &eacute;t&eacute; cr&eacute;&eacute; ! <a href='@(routes.Application.game)' class='alert-link'>Fais p&eacute;ter les images !</a>
-			    </div>
-			}
+		@if(flash.contains("success")){
+			<div class="alert alert-success">
+      			@Html(flash.get("success"))
+      		</div>
+		}
 	
 		<div class="hero-unit">
 		  <h1>Bienvenue sur MYMOviequiZ</h1>
