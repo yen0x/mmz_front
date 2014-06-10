@@ -1,11 +1,11 @@
 @main("game") {
 <div id="container" class="container-fluid">
-	<div id="formsContainer" class="row">
-		<div id="signIn" class="col-xs-6">
-			<h3>Connexion au serveur de jeu</h3>
+	<div id="formsContainer" class="row-fluid">
+		<div id="signIn" class="span6">
+			<h3>Je poss&egrave;de d&eacute;j&agrave; un compte:</h3>
 			<form name="signInForm" action="javascript:;" class="form-horizontal">
 				<div class="control-group">
-					<label for="login" class="control-label">Utilisateur :</label>
+					<label for="login" class="control-label">Pseudo :</label>
 					<div class="controls">
 						<input type="text" id="login" value="" class="form-control" />
 					</div>
@@ -21,10 +21,10 @@
 			</form>
 		</div>
 		<!-- /sign in -->
-		<div id="tryOut" class="col-xs-6">
-			<h3>Essayer le jeu</h3>
+		<div id="tryOut" class="span6">
+			<h3>Je ne veux pas cr&eacute;er de compte:</h3>
 			<form name="signInForm" action="javascript:;" class="form-horizontal">
-				<br /> <input type="submit" id="signInGuest" value="Essayer"
+				<br /> <input type="submit" id="signInGuest" value="Essayer avec un compte invit&eacute;"
 					class="btn btn-primary" />
 			</form>
 		</div>
@@ -32,8 +32,8 @@
 	</div>
 	<!-- /formContainer -->
 	<div id="roomList">
-		<h2>Liste des parties disponibles</h2>
-		<div>Cliquez sur une partie ci-dessous pour la rejoindre :</div>
+		<h2>Liste des salons disponibles</h2>
+		<div>Choisis ton genre de pr&eacute;dilection :</div>
 		<br />
 		<ul id="roomList_ul" class="nav nav-pills"></ul>
 	</div>
@@ -41,7 +41,7 @@
 	<div id="reponseServeur"></div>
 	<div id="reponseScore"></div>
 	<div id="content">
-		<div id="gameFrame">Votre partie va bient&ocirc;t commencer.</div>
+		<div id="gameFrame">La partie va bient&ocirc;t commencer...</div>
 		<div id="rankingFrame"></div>
 		<form name="reponseForm" action="javascript:;">
 			<h2>R&eacute;ponse :</h2>
