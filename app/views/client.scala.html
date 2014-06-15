@@ -1,8 +1,11 @@
 @main("game") {
 <div id="container" class="container-fluid">
-	<div id="formsContainer" class="row-fluid">
-		<div id="signIn" class="span6">
-			<h3>Je poss&egrave;de d&eacute;j&agrave; un compte:</h3>
+	<div id="formsContainer" class="row">
+		<div id="signIn" class="col-xs-10 col-md-6">
+		<div class="thumbnail">
+      		<img data-src="@routes.Assets.at("images/member_ticket.jpg")" alt="Member ticket">
+      		<div class="caption">
+        			<h3>Je poss&egrave;de d&eacute;j&agrave; un compte:</h3>
 			<form name="signInForm" action="javascript:;" class="form-horizontal">
 				<div class="control-group">
 					<label for="login" class="control-label">Pseudo :</label>
@@ -19,16 +22,23 @@
 				<br /> <input type="submit" id="signInBouton" value="Me Connecter"
 					class="btn btn-primary" />
 			</form>
-		</div>
-		<!-- /sign in -->
-		<div id="tryOut" class="span6">
+      		</div>
+    	</div>
+	</div>
+	<!-- /sign in -->
+	<div id="tryOut" class="col-xs-10 col-md-6">
+		<div class="thumbnail">
+      		<img data-src="@routes.Assets.at("images/visitor_ticket.jpg")" alt="Visitor ticket">
+      		<div class="caption">
 			<h3>Je ne veux pas cr&eacute;er de compte:</h3>
 			<form name="signInForm" action="javascript:;" class="form-horizontal">
 				<br /> <input type="submit" id="signInGuest" value="Essayer avec un compte invit&eacute;"
 					class="btn btn-primary" />
 			</form>
+			</div>
 		</div>
-		<!-- /try out -->
+	</div>
+	<!-- /try out -->
 	</div>
 	<!-- /formContainer -->
 	<div id="roomList">
