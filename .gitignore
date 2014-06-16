@@ -16,6 +16,7 @@ dist
 /.settings
 conf/application.conf
 conf/test.conf
+*.backup
 
 # eclipse specific git ignore
 .project
