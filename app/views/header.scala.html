@@ -1,6 +1,6 @@
 @(nav: String = "")
 <header>
-	<nav class="navbar navbar-inverse" role="navigation">
+	<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
 		<div class="container-fluid">
 			<!-- Brand and toggle get grouped for better mobile display -->
 			<div class="navbar-header">
@@ -18,9 +18,9 @@
 			<div class="collapse navbar-collapse"
 				id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav">
-					<li class="@("active".when(nav == "home"))"><a href="@(routes.Application.index())">Accueil</a></li>
-					<li class="@("active".when(nav == "game"))"><a href="@(routes.Application.game)">Jouer</a></li>
-					<li class="@("active".when(nav == "about"))"><a href="@(routes.Application.about)">A propos</a></li>
+					<li class="@("active".when(nav == "home"))"><a href="#home">Accueil</a></li>
+					<li class="@("active".when(nav == "game"))"><a href="#game">Jouer</a></li>
+					<li class="@("active".when(nav == "about"))"><a href="#about">A propos</a></li>
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
 					<li><a href="@(routes.Application.game)"><span class="glyphicon glyphicon-user"></span><span id="userConnect">@if(session.get("username")){@session.get("username")}else{Connexion}</span></a></li>
