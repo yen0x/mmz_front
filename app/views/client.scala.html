@@ -1,9 +1,9 @@
 @main("game") {
 <div id="container" class="container-fluid">
 	<div id="formsContainer" class="row">
-		<div id="signIn" class="col-xs-10 col-md-6">
-		<div class="thumbnail">
-      		<img data-src="@routes.Assets.at("images/member_ticket.jpg")" alt="Member ticket">
+		<div id="signIn" class="col-xs-10 col-md-4">
+		<div class="thumbnail ">
+      		<img src="@routes.Assets.at("images/member_ticket.jpg")" alt="Member ticket">
       		<div class="caption">
         			<h3>Je poss&egrave;de d&eacute;j&agrave; un compte:</h3>
 			<form name="signInForm" action="javascript:;" class="form-horizontal">
@@ -20,20 +20,26 @@
 					</div>
 				</div>
 				<br /> <input type="submit" id="signInBouton" value="Me Connecter"
-					class="btn btn-primary" />
+					class="btn btn-success" />
 			</form>
       		</div>
     	</div>
 	</div>
 	<!-- /sign in -->
-	<div id="tryOut" class="col-xs-10 col-md-6">
+	
+	<div id="tower" class="col-xs-10 col-md-4">
+      		<img src="@routes.Assets.at("images/tower.jpg")" alt="Member ticket">
+	</div>
+	
+	
+	<div id="tryOut" class="col-xs-10 col-md-4">
 		<div class="thumbnail">
-      		<img data-src="@routes.Assets.at("images/visitor_ticket.jpg")" alt="Visitor ticket">
+      		<img src="@routes.Assets.at("images/visitor_ticket.jpg")" alt="Visitor ticket">
       		<div class="caption">
-			<h3>Je ne veux pas cr&eacute;er de compte:</h3>
+			<h3>Je ne poss&egrave;de pas de compte:</h3>
 			<form name="signInForm" action="javascript:;" class="form-horizontal">
 				<br /> <input type="submit" id="signInGuest" value="Essayer avec un compte invit&eacute;"
-					class="btn btn-primary" />
+					class="btn btn-danger" />
 			</form>
 			</div>
 		</div>
