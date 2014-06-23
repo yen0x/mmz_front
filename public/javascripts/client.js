@@ -9,7 +9,7 @@ var Client = {
 	admin : '',
 	muc_jid : '',
 	nickname : '',
-	MMZ_URL : 'http://localhost',
+	MMZ_URL : 'http://www.mymoviequiz.com',
 	NS_MUC : 'http://jabber.org/protocol/muc',
 
 	classementFinalHandler : function(json) {
@@ -33,6 +33,11 @@ var Client = {
 		$('#rankingFrame').html(classement);
 		$('#rankingFrame').append("<br/>");
 		$('#reponseScore').empty();
+	},
+	leaveRoom: function(){
+		Client.connection.send($pres({
+			to: Client.muc_jid,
+			type: "unavailable"}));
 	},
 	mainMessageHandler : function(message) {
 		$('#gameFrame').html("<div id='messageServeur'><br/>" + message + "</div>");
@@ -91,11 +96,6 @@ var Client = {
 	onConnect : function(status) {
 		if(status === Strophe.Status.CONNECTED || status === Strophe.Status.ATTACHED) {
 			Client.connection.send($pres().c('priority').t('0'));
-			Client.connection.addHandler(Client.messageHandler, null, 'message', 'groupchat');
-			//Client.connection.addHandler(Client.privateMessageHandler, null, 'message', 'groupchat');
-			Client.connection.addHandler(Client.autoReconnect, null, 'presence', 'unavailable', null, Client.muc_jid);
-			//Client.connection.addHandler(Client.listRooms, null, 'iq', 'get');
-			
 			$(document).trigger('connected');
 			$("#formsContainer").hide();
 		} else if(status === Strophe.Status.DISCONNECTED) {
@@ -127,7 +127,7 @@ var Client = {
 	mucConnect : function(elem) {
 		Client.room = elem;
 		Client.muc_jid = Client.room + '@' + Client.conference + '/' + Client.nickname;
-		Client.admin = Client.adminBase + Client.room;
+		Client.admin = Client.adminBase + capitalise(Client.room);
 		Client.connection.send($pres({
 			to : Client.muc_jid
 		}).c('x', {
@@ -147,8 +147,16 @@ var Client = {
 				type : "string"
 			}).t($("#reponse").val()));
 		});
+		Client.muc_admin_jid = Client.room + '@' +Client.conference+"/roomadmin";
+		Client.connection.addHandler(Client.messageHandler, null, 'message', 'groupchat', null, Client.muc_admin_jid);
+		Client.connection.addHandler(Client.messageHandler, null, 'message', 'groupchat', null, Client.admin);
 	}
 };
+
+function capitalise(string)
+{
+    return string.charAt(0).toUpperCase() + string.slice(1);
+}
 
 $(document).ready(function() {
 	Client.connection = new Strophe.Connection(Client.BOSH_SERVICE);
@@ -179,8 +187,10 @@ $(document).ready(function() {
 	
 	Client.connection.xmlOutput = function(traffic) {
 		console.log(traffic);
-		sessionStorage.setItem("sid", $(traffic).attr("sid"));
-		sessionStorage.setItem("rid", $(traffic).attr("rid"));
+		if($(traffic).attr("sid"))
+			sessionStorage.setItem("sid", $(traffic).attr("sid"));
+		if($(traffic).attr("rid"))
+			sessionStorage.setItem("rid", $(traffic).attr("rid"));
 	}
 	$("#signInBouton").click(function() {
 		Client.nickname = $('#login').val();
@@ -207,6 +217,7 @@ $(document).ready(function() {
 			}
 		});
 	});
+	
 	
 	if(sessionStorage.getItem("jid") && sessionStorage.getItem("sid") && sessionStorage.getItem("rid")){
 		Client.connection.attach(sessionStorage.getItem("jid"), sessionStorage.getItem("sid"),
