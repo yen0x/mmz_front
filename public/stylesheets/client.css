@@ -8,11 +8,38 @@
   z-index: -1;
 }
 
+.bg_member {
+    background: url('../images/fountain2.jpg') no-repeat center center !important;
+    padding-top:1px !important;
+    padding-left:1px !important;
+   	color: white !important;
+  	text-shadow: #444 0 1px 1px;
+}
+
+.bg_visitor {
+    background: url('../images/avatar.png') no-repeat center center !important;
+    padding-top:1px !important;
+    padding-left:1px !important;
+   	color: white !important;
+  	text-shadow: #444 0 1px 1px;
+}
+
+.form-member{
+	margin-left:14px !important;
+	margin-right:11px !important;
+	margin-bottom:15px !important;
+}
+
 .jumbotron {
   color: white !important;
   padding-top: 120px !important;
   text-shadow: #444 0 1px 1px;
   background:transparent !important;
+}
+
+.middle-zone{
+/* 	margin-top:20px; */
+	margin-bottom:20px;
 }
 
 /*html {
