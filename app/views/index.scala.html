@@ -1,6 +1,6 @@
 @main() {
 	
-	<div class="container-fluid" id="home">
+	<div class="container-fluid anchor" id="home">
 	
 		@if(flash.contains("success")){
 			<div class="alert alert-success">
@@ -8,12 +8,11 @@
       		</div>
 		}
 		
-		<div class="bg"></div>
-		<div class="jumbotron">
+		<div class="jumbotron home_bg">
 		  <h2>Bienvenue sur MYMOviequiZ</h2>
 		  <p>o&ugrave; tu pourras t'amuser et mettre &agrave; l'&eacute;preuve tes connaissances cin&eacute;matographiques</p>
 		  <p>
-		    <a class="btn btn-primary btn-large" href="@(routes.Application.about)">
+		    <a class="btn btn-primary btn-large" href="#about">
 		      Le principe du jeu en quelques mots
 		    </a>
 		  </p>
@@ -23,7 +22,7 @@
 	
 	<div class="container-fluid middle-zone" >
 	
-	<div class="row-fluid" id="game"> <!--FIXME  id="formsContainer" -->
+	<div class="row-fluid anchor" id="game"> <!--FIXME  id="formsContainer" -->
 		
 		<div class="col-xs-12 col-md-6 bg_member"> <!-- id="signIn" -->
 		
@@ -73,42 +72,31 @@
 	</div>
 	
 	<div class="container-fluid" >
-	    <div class="row-fluid" id="about">
+	    <div class="row-fluid anchor" id="about">
 	      
 	      <div class="col-xs-12 col-md-12 panel panel-default" style="padding-left:0px !important;padding-right:0px !important;">
-	      <div class="panel-heading"><strong>En quelques mots</strong></div>
+	      <div class="panel-heading"><h4>En quelques mots...</h4></div>
 	     	 <div class="panel-body" >
 				MYMOviequiZ, Mymoz pour les intimes, te propose une petite pause quotidienne de fun en testant test connaissances cin&eacute;matographiques.
-				
-				<h4>Le principe du jeu</h4>
-			  	<table class="table table-striped">
-				 	<tr><td>Trouver le titre d'un film &agrave; partir de plusieurs images tir&eacute;es directement de celui-ci</td></tr>
-				 	<tr><td>Tu peux aussi bien rentrer le titre original que le titre en fran&ccedil;ais</td></tr>
-				 	<tr><td>Tu as le titre, tu as le point ! Lors d'une partie, il te faudra trouver le plus de films possible afin d'accumuler un maximum de points et &ecirc;tre le premier du classement</td></tr>
-				 	<tr><td>Tu peux choisir de tester tes connaissances par genre (Science-fiction, &Eacute;pouvante, Com&eacute;die, Action...) ou tenter le Quiz G&eacute;n&eacute;ral</td></tr>
-				</table>
-			</div>
-		  </div>
-		  
-		  <div class="col-xs-12 col-md-12 panel panel-default" style="padding-left:0px !important;padding-right:0px !important;">
-		  	<div class="panel-body" >
-				<h4>D&eacute;roulement d'une partie</h4>
-				<div class="well">
-				<ul>
-				<li>10 films par partie</li>
-				<li>5 screenshots par films</li>
-				<li>3 secondes par screenshots</li>
-				</ul>
-				</div>
-		
-				<p>
-				Pour jouer, tu peux soit <a href="@routes.UserController.signup">cr&eacute;er un compte</a> soit <a href="@routes.Application.game">essayer en tant que guest</a>.
-				</p>
-				<img src='@routes.Assets.at("images/reservoirdogs.png")' alt="" />
-			</div>
-		   </div>
-		   
-	      </div><!--/row-->
+			</div>	
+		  	<table class="table table-striped">
+		  		<tr><td><h4>Le principe du jeu</h4></td></tr>
+			 	<tr><td><ul>
+			 		<li>Trouver le titre d'un film &agrave; partir de plusieurs images tir&eacute;es directement de celui-ci</li>
+			 		<li>Tu peux aussi bien rentrer le titre original que le titre en fran&ccedil;ais</li>
+			 		<li>Tu as le titre, tu as le point ! Lors d'une partie, il te faudra trouver le plus de films possible afin d'accumuler un maximum de points et &ecirc;tre le premier du classement</li>
+			 		<li>Tu peux choisir de tester tes connaissances par genre (Science-fiction, &Eacute;pouvante, Com&eacute;die, Action...) ou tenter le Quiz G&eacute;n&eacute;ral</li>
+			 	</ul></td></tr>
+			 	<tr><td><h4>D&eacute;roulement d'une partie</h4></td></tr>
+			 	<tr><td><ul>
+					<li>10 films par partie</li>
+					<li>5 screenshots par films</li>
+					<li>3 secondes par screenshots</li>
+				</ul></td></tr>
+			 	<tr><td>Pour jouer, tu peux soit <a href="#game">cr&eacute;er un compte</a> soit <a href="#game">essayer avec un compte visiteur</a>.</td></tr>
+			</table>
+		  </div>		   
+	   </div><!--/row-->
      
 	</div>
 <!-- /container-fluid -->
