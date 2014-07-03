@@ -1,52 +1,5 @@
 @main("game") {
 <div id="container" class="container-fluid">
-	<div id="formsContainer" class="row">
-		<div id="signIn" class="col-xs-10 col-md-4">
-		<div class="thumbnail ">
-      		<img src="@routes.Assets.at("images/member_ticket.jpg")" alt="Member ticket">
-      		<div class="caption">
-        			<h3>Je poss&egrave;de d&eacute;j&agrave; un compte:</h3>
-			<form name="signInForm" action="javascript:;" class="form-horizontal">
-				<div class="control-group">
-					<label for="login" class="control-label">Pseudo :</label>
-					<div class="controls">
-						<input type="text" id="login" value="" class="form-control" />
-					</div>
-				</div>
-				<div class="control-group" style="margin-bottom: 0px;">
-					<label for="password" class="control-label">Mot de passe :</label>
-					<div class="controls">
-						<input type="password" id="password" value="" class="form-control" />
-					</div>
-				</div>
-				<br /> <input type="submit" id="signInBouton" value="Me Connecter"
-					class="btn btn-success" />
-			</form>
-      		</div>
-    	</div>
-	</div>
-	<!-- /sign in -->
-	
-	<div id="tower" class="col-xs-10 col-md-4">
-      		<img src="@routes.Assets.at("images/tower.jpg")" alt="Member ticket">
-	</div>
-	
-	
-	<div id="tryOut" class="col-xs-10 col-md-4">
-		<div class="thumbnail">
-      		<img src="@routes.Assets.at("images/visitor_ticket.jpg")" alt="Visitor ticket">
-      		<div class="caption">
-			<h3>Je ne poss&egrave;de pas de compte:</h3>
-			<form name="signInForm" action="javascript:;" class="form-horizontal">
-				<br /> <input type="submit" id="signInGuest" value="Essayer avec un compte invit&eacute;"
-					class="btn btn-danger" />
-			</form>
-			</div>
-		</div>
-	</div>
-	<!-- /try out -->
-	</div>
-	<!-- /formContainer -->
 	<div id="roomList">
 		<h2>Liste des salons disponibles</h2>
 		<div>Choisis ton genre de pr&eacute;dilection :</div>

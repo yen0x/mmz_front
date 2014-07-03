@@ -94,7 +94,11 @@ var Client = {
 		return true;
 	},
 	onConnect : function(status) {
-		if(status === Strophe.Status.CONNECTED || status === Strophe.Status.ATTACHED) {
+		if(status === Strophe.Status.CONNECTED){
+			Client.connection.send($pres().c('priority').t('0'));
+			$(document).trigger('connected');
+			document.location.href = "/site/game";
+		}else if( status === Strophe.Status.ATTACHED) {
 			Client.connection.send($pres().c('priority').t('0'));
 			$(document).trigger('connected');
 			$("#formsContainer").hide();

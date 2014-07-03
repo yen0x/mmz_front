@@ -1,3 +1,7 @@
+body {
+	padding-top:40px;
+}
+
 .home_bg {
   background: url('../images/fauteuils.jpg') no-repeat center center !important;
 }
