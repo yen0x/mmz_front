@@ -4444,7 +4444,8 @@ Strophe.Bosh.prototype = {
                                        Math.pow(req.sends, 3)) * 1000;
                 setTimeout(sendFunc, backoff);
             } else {
-                sendFunc();
+            	if(req.sends == 0)
+            		sendFunc();
             }
 
             req.sends++;
