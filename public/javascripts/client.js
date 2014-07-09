@@ -120,7 +120,12 @@ var Client = {
 	},
 	getRooms : function(iq_result) {
 		$(iq_result).find('item').each(function() {
-			$("#roomList_ul").append("<li class='roomList_li'><a href='#'>" + $(this).attr('name') + "</a></li>");
+			$("#roomList_ul").
+			append("<div class='col-xs-12 col-sm-4' >" +
+						"<div style=\"background: url('assets/images/"+$(this).attr('name')+".jpg') no-repeat left center;\" class='room_img'>" +
+								"<a href='#' class='btn btn-default roomList_li'>" + $(this).attr('name') + "</a>" +
+						"</div>" +
+					 "</div>");
 		});
 		$(".roomList_li").click(function() {
 			Client.mucConnect($(this).children().text())

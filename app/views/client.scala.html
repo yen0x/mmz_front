@@ -1,11 +1,19 @@
 @main("game") {
 <div id="container" class="container-fluid">
+
 	<div id="roomList">
-		<h2>Liste des salons disponibles</h2>
-		<div>Choisis ton genre de pr&eacute;dilection :</div>
+		<div class="jumbotron play_bg">
+		  <h2>Salons disponibles</h2>
+		  <p>choisis ton genre de pr&eacute;dilection ou teste les tous en m&ecirc;me temps dans le salon g&eacute;n&eacute;ral </p>
+		</div>
 		<br />
-		<ul id="roomList_ul" class="nav nav-pills"></ul>
+		<div class="row-fluid" id="roomList_ul"></div>
 	</div>
+
+
+<!-- 		<h2>Salons disponibles</h2> -->
+<!-- 		<div class="well well-sm">Choisis ton genre de pr&eacute;dilection :</div> -->
+<!-- 		</div> -->
 	<div id="log"></div>
 	<div id="reponseServeur"></div>
 	<div id="reponseScore"></div>

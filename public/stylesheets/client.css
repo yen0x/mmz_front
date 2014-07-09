@@ -6,6 +6,10 @@ body {
   background: url('../images/fauteuils.jpg') no-repeat center center !important;
 }
 
+.play_bg{
+  background: url('../images/cinema.jpg') no-repeat center center !important;
+}
+
 .bg_member {
     background: url('../images/fountain2.jpg') no-repeat center center !important;
     padding-top:1px !important;
@@ -43,6 +47,19 @@ body {
 .anchor {
 	padding-top:50px;
 	margin-top:-50px;
+}
+
+.room_img{
+	height:150px;
+	border-radius: 5px;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	margin-bottom:10px;
+}
+
+.roomList_li{
+	height:100%;
+	width:75px;
 }
 
 /*html {
