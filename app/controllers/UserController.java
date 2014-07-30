@@ -25,13 +25,18 @@ public class UserController extends Controller {
 
 	@Transactional
 	public static Result joinAsGuest() {
-		//TODO add session connection
+		
 		ObjectNode result = Json.newObject();
 		User guest = User.createGuest();
 		if (null != guest) {
 			result.put("type", "guest login");
 			result.put("user", guest.username);
 			result.put("password", guest.password);
+			
+			//FIXME find an other way
+			session().clear();
+			session("username", guest.username);
+			session("status", guest.statut);
 		}
 		return ok(result);
 
@@ -41,6 +46,9 @@ public class UserController extends Controller {
 	public static Result newUser() throws NoSuchAlgorithmException, InvalidKeySpecException, UnsupportedEncodingException {
 
 		Form<User> filledForm = userForm.bindFromRequest();
+		if(!filledForm.field("password").valueOr("").equals(filledForm.field("confirmPassword").value())){
+			filledForm.reject("confirmPassword","Les mots de passe ne sont pas identiques");
+		}
 		if (filledForm.hasErrors()) {
 			return badRequest(signup.render(filledForm));
 		} else {
@@ -49,7 +57,7 @@ public class UserController extends Controller {
 			message+=" avec le nom d'utilisateur " + user.username + ".\r\n \r\n";
 			message+="A bientôt dans les salons Mymoz !";
 			EmailHelper.sendSimpleEmail("Inscription Mymoviequiz", user.email, message);
-			flash("success", "Votre compte a &eacute;t&eacute; cr&eacute;&eacute; ! <a href='"+routes.Application.game()+"' class='alert-link'>Jouez en cliquant ici !</a>");
+			flash("success", "Ton compte a &eacute;t&eacute; cr&eacute;&eacute; ! <a href='"+routes.Application.game()+"' class='alert-link'>Joue tout de suite en cliquant ici !</a>");
 			return redirect(routes.Application.index());
 		}
 	}

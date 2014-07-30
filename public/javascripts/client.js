@@ -101,7 +101,6 @@ var Client = {
 		}else if( status === Strophe.Status.ATTACHED) {
 			Client.connection.send($pres().c('priority').t('0'));
 			$(document).trigger('connected');
-			$("#formsContainer").hide();
 		} else if(status === Strophe.Status.DISCONNECTED) {
 			$(document).trigger('disconnected');
 		} else if(status === Strophe.Status.ERROR) {

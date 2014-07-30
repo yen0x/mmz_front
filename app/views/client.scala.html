@@ -10,21 +10,27 @@
 		<div class="row-fluid" id="roomList_ul"></div>
 	</div>
 
-
-<!-- 		<h2>Salons disponibles</h2> -->
-<!-- 		<div class="well well-sm">Choisis ton genre de pr&eacute;dilection :</div> -->
-<!-- 		</div> -->
 	<div id="log"></div>
 	<div id="reponseServeur"></div>
 	<div id="reponseScore"></div>
-	<div id="content">
-		<div id="gameFrame">La partie va bient&ocirc;t commencer...</div>
-		<div id="rankingFrame"></div>
-		<form name="reponseForm" action="javascript:;">
-			<h2>R&eacute;ponse :</h2>
-			<input type="text" id="reponse" style="width: 66%" /> <input
-				type="submit" class="button" id="reponseBouton" value="OK" />
-		</form>
+	<div id="content"  >
+		<br/>
+		<div class="row-fluid">
+			<div class="col-xs-12 col-md-9 game_background" >
+				<div class="row">
+					<div id="gameFrame">La partie va bient&ocirc;t commencer...</div>
+				</div>
+				<div class="row" style="padding-left:100px;margin-bottom:10px;">
+					<form name="reponseForm" action="javascript:;">
+					<input type="text" id="reponse" style="width:85%;" placeholder="Titre du film"  /> 
+					<input type="submit" class="button" id="reponseBouton" value="OK" />
+					</form>
+				</div>
+			</div>
+			<div class="col-xs-12 col-md-3" >
+				<div id="rankingFrame"></div>
+			</div>
+		</div>
 	</div>
 </div>
 <!-- /container -->

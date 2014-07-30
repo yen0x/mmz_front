@@ -1,65 +1,76 @@
 body {
-	padding-top:40px;
+	padding-top: 50px;
 }
 
 .home_bg {
-  background: url('../images/fauteuils.jpg') no-repeat center center !important;
+	background: url('../images/fauteuils.jpg') no-repeat center center
+		!important;
 }
 
-.play_bg{
-  background: url('../images/cinema.jpg') no-repeat center center !important;
+.play_bg {
+	background: url('../images/cinema.jpg') no-repeat center center
+		!important;
+}
+
+.game_background{
+	background-image: url('../images/theatre.png');
+	background-repeat: no-repeat;
+	background-position: center center;
+	background-size: cover;
 }
 
 .bg_member {
-    background: url('../images/fountain2.jpg') no-repeat center center !important;
-    padding-top:1px !important;
-    padding-left:1px !important;
-   	color: white !important;
-  	text-shadow: #444 0 1px 1px;
+	background: url('../images/fountain2.jpg') no-repeat center center
+		!important;
+	padding-top: 1px !important;
+	padding-left: 1px !important;
+	color: white !important;
+	text-shadow: #444 0 1px 1px;
 }
 
 .bg_visitor {
-    background: url('../images/avatar.png') no-repeat center center !important;
-    padding-top:1px !important;
-    padding-left:1px !important;
-   	color: white !important;
-  	text-shadow: #444 0 1px 1px;
+	background: url('../images/avatar.png') no-repeat center center
+		!important;
+	padding-top: 1px !important;
+	padding-left: 1px !important;
+	color: white !important;
+	text-shadow: #444 0 1px 1px;
 }
 
-.form-member{
-	margin-left:14px !important;
-	margin-right:11px !important;
-	margin-bottom:15px !important;
+.form-member {
+	margin-left: 14px !important;
+	margin-right: 11px !important;
+	margin-bottom: 15px !important;
 }
 
 .jumbotron {
-  color: white !important;
-  padding-top: 120px !important;
-  text-shadow: #444 0 1px 1px;
-/*   background:transparent !important; */
+	color: white !important;
+	padding-top: 120px !important;
+	text-shadow: #444 0 1px 1px;
+	/*   background:transparent !important; */
 }
 
-.middle-zone{
-	margin-top:5px;
-	margin-bottom:20px;
+.middle-zone {
+	margin-top: 5px;
+	margin-bottom: 20px;
 }
 
 .anchor {
-	padding-top:50px;
-	margin-top:-50px;
+	padding-top: 50px;
+	margin-top: -50px;
 }
 
-.room_img{
-	height:150px;
+.room_img {
+	height: 150px;
 	border-radius: 5px;
 	-moz-border-radius: 5px;
 	-webkit-border-radius: 5px;
-	margin-bottom:10px;
+	margin-bottom: 10px;
 }
 
-.roomList_li{
-	height:100%;
-	width:75px;
+.roomList_li {
+	height: 100%;
+	width: 75px;
 }
 
 /*html {
@@ -112,7 +123,7 @@ label.register {
 }
 
 #roomList {
-	display:none;
+	display: none;
 }
 /*
 #header h1 {
@@ -130,14 +141,14 @@ label.register {
 	border-top-left-radius: 10px;
 	border-top-right-radius: 10px;
 }*/
-
 #gameFrame {
 	/*position: relative;*/
 	text-align: center;
-	height: 350px;
-	width: 75%;
-	float: left;
-	margin-top: 50px;
+	height: 400px;
+	width: 100%;
+	margin-top: 60px;
+	padding-top:20px;
+	margin-bottom:20px;
 }
 
 #gameFrame img {
@@ -151,7 +162,6 @@ label.register {
 	border: 1px groove #04C;
 	border-radius: 10px;
 	height: 400px;
-	width: 19%;
 }
 
 /*

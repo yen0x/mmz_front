@@ -20,11 +20,11 @@
 		
 	</div>
 	
-	<div class="container-fluid middle-zone" >
+	<div class="container-fluid middle-zone" id="game">
 	
 	<div class="row-fluid anchor" id="formsContainer"> <!--FIXME  id="formsContainer" -->
 		
-		<div class="col-xs-12 col-md-6 bg_member"> <!-- id="signIn" -->
+		<div class="col-xs-12 col-md-6 bg_member" > <!-- id="signIn" -->
 		
 		<div class="row-fluid">
       		<div class="col-xs-6 col-md-6" style="padding-left:0px !important;">
@@ -62,7 +62,10 @@
       		<div class="col-xs-6 col-md-6">
 				<form name="signInForm" action="javascript:;" class="form-horizontal">
 					<br /> <input type="submit" id="signInGuest" value="Essayer avec un compte visiteur"
-						class="btn btn-default pull-right" style="margin-top:60px;" />
+						class="btn btn-default pull-right" style="margin-top:40px;" />
+					<br /> <button class="btn btn-default pull-right" style="margin-top:20px;" >
+							<a href="@(routes.UserController.signup)" >Cr&eacute;er un compte</a>
+						   </button>
 				</form>
 			</div>
 		</div>
@@ -93,7 +96,7 @@
 					<li>5 screenshots par films</li>
 					<li>3 secondes par screenshots</li>
 				</ul></td></tr>
-			 	<tr><td>Pour jouer, tu peux soit <a href="#game">cr&eacute;er un compte</a> soit <a href="#game">essayer avec un compte visiteur</a>.</td></tr>
+			 	<tr><td>Pour jouer, tu peux soit <a href="@(routes.UserController.signup)">cr&eacute;er un compte</a> soit <a href="#game">essayer avec un compte visiteur</a>.</td></tr>
 			</table>
 		  </div>		   
 	   </div><!--/row-->

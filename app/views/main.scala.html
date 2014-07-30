@@ -33,7 +33,10 @@
 	
 	<script>
 	$(document).ready(function(){
-	
+		
+		$('#content').on('show', function(){
+			$("body").css("background-image", "url('@routes.Assets.at("images/game_bg.jpg")')");
+		});
 		
 	});
 	</script>

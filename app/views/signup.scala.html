@@ -3,24 +3,50 @@
 
 @implicitField = @{ FieldConstructor(bootstrapFieldConstructor.f) }
 
-@main() {
-	<div class="container">
-		<div class="row col-xs-6">
-		<h3>Nouveau sur Mymoz !</h3>
-		@if(userForm.hasGlobalErrors) {
-		    <div class="alert alert-danger">
-		        @userForm.globalError.message
-		    </div>
-		}
+@main("signup") {
+
+	<div class="container-fluid anchor" id="signup">
+		
+		<div class="jumbotron home_bg">
+		  <h2>Nouveau sur Mymoz !</h2>
+		  <p>Cr&eacute;e ton compte en quelques secondes</p>
+		</div>
+		
+	</div>
+
+	<div class="container ">
+		<div class="row col-xs-12 col-md-12">
+			@if(userForm.hasGlobalErrors) {
+			    <div class="alert alert-danger">
+			        @userForm.globalError.message
+			    </div>
+			}
+		</div>
 		@form(routes.UserController.newUser()){
-			<div class="control-group">
-				@inputText(userForm("username"),'class -> "form-control", '_label -> "Pseudo", '_showConstraints -> false)
-				@inputPassword(userForm("password"),'class -> "form-control", '_label -> "Mot de passe", '_showConstraints -> false)
-				@inputText(userForm("email"),'class -> "form-control", '_label -> "E-mail", '_showConstraints -> false, '_error -> "Email invalide")
-				
-				<input type="submit" value="OK" class="btn btn-default"/>
+			<div class="row col-xs-12 col-md-3">
+				<div class="control-group">
+					@inputText(userForm("username"),'class -> "form-control", '_label -> "Pseudo", '_showConstraints -> false)
+					<br/>
+					@inputText(userForm("email"),'class -> "form-control", '_label -> "E-mail", '_showConstraints -> false, '_error -> "Email invalide")
+				</div>
+			</div>
+			
+			<div class="row col-xs-12 col-md-1"></div>
+			
+			<div class="row col-xs-12 col-md-3">
+				<div class="control-group">
+					@inputPassword(userForm("password"),'class -> "form-control", '_label -> "Mot de passe", '_showConstraints -> false)
+					<br/>
+					@inputPassword(userForm("confirmPassword"),'class -> "form-control", '_label -> "Confirmer le mot de passe", '_showConstraints -> false)
+				</div>
+			</div>
+			
+			<div class="row col-xs-12 col-md-1">&nbsp;</div>
+			
+			<div class="row col-xs-12 col-md-2">
+				<br/>
+				<input type="submit" value="Cr&eacute;er mon compte" class="btn btn-success pull-right"/>
 			</div>
 		}
-		</div>
 	</div>
 }

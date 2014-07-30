@@ -18,9 +18,9 @@
 			<div class="collapse navbar-collapse"
 				id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav">
-					<li class="@("active".when(nav == "home"))"><a href="#home">Accueil</a></li>
-					<li class="@("active".when(nav == "game"))"><a href="#game">Jouer</a></li>
-					<li class="@("active".when(nav == "about"))"><a href="#about">A propos</a></li>
+					<li class="@("active".when(nav == "home"))"><a href="@if(nav != "home"){@(routes.Application.index)}else{#home}">Accueil</a></li>
+					<li class="@("active".when(nav == "game"))"><a href="@if(nav == "game"){#}else{ @if(session.get("username")){@(routes.Application.game)}else{#game}}">Jouer</a></li>
+					<li class="@("active".when(nav == "about"))"><a href="@if(nav != "home"){@(routes.Application.index)#about}else{#about}">A propos</a></li>
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
 					<li><a href="@(routes.Application.game)"><span class="glyphicon glyphicon-user"></span><span id="userConnect">@if(session.get("username")){@session.get("username")}else{Connexion}</span></a></li>
@@ -31,3 +31,4 @@
 		<!-- /.container-fluid -->
 	</nav>
 </header>
+
