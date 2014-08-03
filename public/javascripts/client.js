@@ -127,7 +127,7 @@ var Client = {
 					 "</div>");
 		});
 		$(".roomList_li").click(function() {
-			Client.mucConnect($(this).children().text())
+			Client.mucConnect($(this).text())
 		});
 		$("#roomList").show();
 
