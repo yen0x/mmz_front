@@ -144,11 +144,10 @@ label.register {
 #gameFrame {
 	/*position: relative;*/
 	text-align: center;
-	height: 400px;
+	height: 390px;
 	width: 100%;
-	margin-top: 60px;
-	padding-top:20px;
-	margin-bottom:20px;
+	padding-top:70px;
+	margin-bottom:10px;
 }
 
 #gameFrame img {
@@ -157,11 +156,52 @@ label.register {
 	width: auto;
 }
 
+#reponseServeur{
+	text-align: center;
+	width: 100%;
+	height:10px;
+	padding-top:75px;
+}
+
+#reponseScore{
+	text-align: center;
+	height:10px;
+	width: 100%;
+	padding-top:15px;
+}
+
+#resultat{
+	max-width: 50% !important;
+	text-align:center !important;
+}
+
 #rankingFrame {
 	overflow: auto;
-	border: 1px groove #04C;
+	text-align:center;
+	color:white;
+	background-color:black;
+	border: 1px groove #25262A;
 	border-radius: 10px;
-	height: 400px;
+	height: 300px;
+}
+
+#movieList {
+	text-align:center;
+	color:black;
+	background-color:white;
+	border: 1px groove #25262A;
+	border-radius: 10px;
+	height: 200px;
+	padding:6px 0px;
+}
+
+#movieListContent{
+	height: 188px;
+	overflow: auto;
+}
+
+.emptySpace{
+	height:20px;
 }
 
 /*

@@ -11,24 +11,38 @@
 	</div>
 
 	<div id="log"></div>
-	<div id="reponseServeur"></div>
-	<div id="reponseScore"></div>
 	<div id="content"  >
 		<br/>
 		<div class="row-fluid">
 			<div class="col-xs-12 col-md-9 game_background" >
+				<div class="row" >
+						<div id="reponseServeur"></div>
+				</div>
+				<div class="row" >
+						<div id="reponseScore"></div>
+				</div>
 				<div class="row">
 					<div id="gameFrame">La partie va bient&ocirc;t commencer...</div>
 				</div>
-				<div class="row" style="padding-left:100px;margin-bottom:10px;">
-					<form name="reponseForm" action="javascript:;">
-					<input type="text" id="reponse" style="width:85%;" placeholder="Titre du film"  /> 
-					<input type="submit" class="button" id="reponseBouton" value="OK" />
-					</form>
+				<div class="row" style="margin-bottom:10px;">
+					<div class="center-block" style="width:80%;">
+						<form name="reponseForm" action="javascript:;">
+						<input type="text" id="reponse" style="width:82%;" placeholder="Titre du film"  /> 
+						<input type="submit" class="button" id="reponseBouton" value="OK" style="width:15%;" />
+						</form>
+					</div>
 				</div>
 			</div>
 			<div class="col-xs-12 col-md-3" >
 				<div id="rankingFrame"></div>
+				<div class="emptySpace"></div>
+				<div id="movieList">
+					<div id="movieListContent">
+						<h4>Films pass&eacute;s</h4>
+						<table class="table table-striped" id="previousMovies">
+						</table>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>

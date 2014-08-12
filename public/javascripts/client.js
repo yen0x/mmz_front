@@ -14,22 +14,23 @@ var Client = {
 
 	classementFinalHandler : function(json) {
 		var j = $.parseJSON(json);
-		var classement = "<ol class='ranking'>";
+		var classement = "<h4>Score final:<br/>";
 		for(var i = 0; i < j.length; i++) {
-			classement += "<li>" + j[i].nom + " - " + j[i].score + " pts</li>";
+			classement += "" + j[i].nom + " - " + j[i].score + " pts<br/>";
 		}
-		classement += "</ol>";
+		classement += "</h4>";
 
 		$('#gameFrame').html(classement);
 		$('#rankingFrame').html('');
+		$('#previousMovies').html('');
 	},
 	classementHandler : function(json) {
 		var j = $.parseJSON(json);
-		var classement = "<ol class='ranking'>";
+		var classement = "<h4> Scores </h4>";
 		for(var i = 0; i < j.length; i++) {
-			classement += "<li>" + j[i].nom + " - " + j[i].score + " pts</li>";
+			classement += "" + (i+1) + ". " + j[i].nom + " - " + j[i].score + " pts<br/>";
 		}
-		classement += "</ol>";
+		classement += "";
 		$('#rankingFrame').html(classement);
 		$('#rankingFrame').append("<br/>");
 		$('#reponseScore').empty();
@@ -49,17 +50,29 @@ var Client = {
 
 	},
 	reponseFilmHandler : function(film) {
-		$('#gameFrame').html("<div id='resultat'>La bonne r&eacute;ponse &eacute;tait : <br/>" + film + "</div>");
+		$('#gameFrame').html("<div id='resultat' class='center-block'><h4>La bonne r&eacute;ponse &eacute;tait : <br/>" + film + "</h4></div>");
 		$('#reponse').val('');
 		$('#reponseServeur').empty();
+		$('#previousMovies').prepend("<tr><td>"+film+"</td></tr>");
 	},
 	reponseResultatReceived : function(reponse) {
 		$('#reponseServeur').empty();
+		$('#reponseServeur').empty();
+		if(reponse.indexOf("auvaise") > -1){
+			$('#reponseServeur').css({
+			    color : 'red'
+			});
+		}else{
+			$('#reponseServeur').css({
+			    color : 'green'
+			});
+		}
 		$('#reponseServeur').append(reponse);
+		$('#reponse').val('');		
 	},
 	reponseScoreReceived : function(score) {
 		$('#reponseScore').empty();
-		$('#reponseScore').append('Ton score total est de ' + score);
+		$('#reponseScore').append(' (' + score + 'pts)');
 	},
 	messageHandler : function(msg) {
 
